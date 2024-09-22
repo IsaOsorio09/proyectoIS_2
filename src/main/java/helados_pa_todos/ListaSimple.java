@@ -6,6 +6,7 @@ public class ListaSimple {
 	NodoSimple tail;
 	int size;
 	
+        // Este es un commit de prueba
 	ListaSimple(){
 		this.head = null;
 		this.tail = null;
