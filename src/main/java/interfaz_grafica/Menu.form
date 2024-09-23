@@ -24,7 +24,7 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="409" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
               <Component id="txtMenu" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="397" max="-2" attributes="0"/>
           </Group>
@@ -32,12 +32,24 @@
               <EmptySpace min="59" pref="59" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btnProgramaApertura" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnConsultaDisponibilidad" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnProductoVendido" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnCrearIndentificador" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnProductoAbierto" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnConsultaDisponibilidad" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnCrearIndentificador" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnProductoAbierto" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnProductoVendido" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton5" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="243" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -46,17 +58,32 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
               <Component id="txtMenu" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Component id="btnConsultaDisponibilidad" min="-2" pref="33" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Component id="btnCrearIndentificador" min="-2" pref="33" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Component id="btnProductoVendido" min="-2" pref="33" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnProductoAbierto" min="-2" pref="33" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-              <Component id="btnProgramaApertura" min="-2" pref="33" max="-2" attributes="0"/>
-              <EmptySpace pref="133" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnConsultaDisponibilidad" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnCrearIndentificador" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="jButton5" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnProductoVendido" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="jButton2" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnProductoAbierto" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="jButton1" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnProgramaApertura" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="jButton3" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="90" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -71,6 +98,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Crear Identificador "/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearIndentificadorActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnProductoAbierto">
       <Properties>
@@ -90,6 +120,34 @@
     <Component class="javax.swing.JButton" name="btnProgramaApertura">
       <Properties>
         <Property name="text" type="java.lang.String" value="Programa apertura de productos"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jButton1"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jButton2"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton3">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jButton3"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton4">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jButton4"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jButton5"/>
       </Properties>
     </Component>
   </SubComponents>
