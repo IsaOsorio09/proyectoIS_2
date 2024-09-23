@@ -270,7 +270,6 @@ public class Inventario {
     /**
      * Agrega un producto en la cola indicada
      * 
-     * @param codigo sku del producto
      * @param sku sku del producto
      * 
      *
