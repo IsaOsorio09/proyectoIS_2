@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
+//Acá esta implementado todo lo de la decima funcionalidad
 public class Administrador extends Usuario {
     private Map<String, Usuario> usuarios;
     

@@ -17,7 +17,7 @@ public class Inventario {
     private ArrayList<Producto> aperturaProgramada = new ArrayList<>();
     private ArrayList<Producto> abierto = new ArrayList<>();
     private ArrayList<Producto> vendido = new ArrayList<>();
-	private ArrayList<Producto> pedidoProgramado = new ArrayList<>();  //nuevo
+    private ArrayList<Producto> pedidoProgramado = new ArrayList<>();//Parte de la funcionalidad 9, lineas 60
     private Queue chocolate_10;
     private Queue chocolate_5;
     private Queue vainilla_10;
@@ -57,36 +57,62 @@ public class Inventario {
         
         
     }
-    
-    public void agregarPedido(int sku, int cantidad) {
-        pedidosRealizados.put(sku, cantidad);
-    }
+    //Parte de la funcionalidad 9
     public void compararPedidoConInventario() {
-        for (Map.Entry<Integer, Integer> entry : pedidosRealizados.entrySet()) {
-            int sku = entry.getKey();
-            int cantidadPedida = entry.getValue();
-            int cantidadEnInventario = obtenerCantidadEnInventario(sku);
-            
-            if (cantidadEnInventario >= cantidadPedida) {
-                System.out.println("Pedido completo para SKU " + sku);
-            } else if (cantidadEnInventario > 0) {
-                System.out.println("Pedido parcial para SKU " + sku + ": " + cantidadEnInventario + "/" + cantidadPedida);
-            } else {
-                System.out.println("Producto no recibido para SKU " + sku);
-            }
+    // Mostrar los productos programados
+    System.out.println("Productos programados:");
+    for (Producto producto : pedidoProgramado) {
+        System.out.println("SKU: " + producto.getSKU());
+    }
+
+    // Comparar productos pedidos con lo recibido en el inventario
+    for (Map.Entry<Integer, Integer> entry : pedidosRealizados.entrySet()) {
+        int sku = entry.getKey();
+        int cantidadPedida = entry.getValue();
+        int cantidadEnInventario = obtenerCantidadEnInventario(sku);
+
+        if (cantidadEnInventario >= cantidadPedida) {
+            System.out.println("Pedido completo para SKU " + sku);
+        } else if (cantidadEnInventario > 0) {
+            System.out.println("Pedido parcial para SKU " + sku + ": " + cantidadEnInventario + "/" + cantidadPedida);
+        } else {
+            System.out.println("Producto no recibido para SKU " + sku);
         }
     }
+}
+
+    // Método para obtener la cantidad en inventario de un SKU específico
     private int obtenerCantidadEnInventario(int sku) {
-        int cantidad = 0;
-        // Aquí se debería recorrer las colas y listas donde están los productos en el inventario
-        for (Producto producto : usuario) {
-            if (producto.getSKU() == sku) {
-                cantidad++;
-            }
+    int cantidad = 0;
+
+    // Recorre las listas y colas para contar productos de este SKU
+    for (Producto producto : usuario) {
+        if (producto.getSKU() == sku) {
+            cantidad++;
         }
-        // Repetir la lógica para otras listas o colas si es necesario
-        return cantidad;
     }
+    for (Producto producto : aperturaProgramada) {
+        if (producto.getSKU() == sku) {
+            cantidad++;
+        }
+    }
+    for (Producto producto : abierto) {
+        if (producto.getSKU() == sku) {
+            cantidad++;
+        }
+    }
+    for (Producto producto : vendido) {
+        if (producto.getSKU() == sku) {
+            cantidad++;
+        }
+    }
+
+    // Aquí podrías agregar lógica adicional si es necesario para otras estructuras como las colas
+    // Ejemplo: revisar las colas de chocolate, vainilla, fresa, etc.
+
+    return cantidad;
+}
+
 
     
     public void mostrarApertura() {
