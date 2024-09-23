@@ -26,17 +26,61 @@ public class Menu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtMenu = new javax.swing.JLabel();
+        btnCrearIndentificador = new javax.swing.JButton();
+        btnProductoAbierto = new javax.swing.JButton();
+        btnProductoVendido = new javax.swing.JButton();
+        btnConsultaDisponibilidad = new javax.swing.JButton();
+        btnProgramaApertura = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        txtMenu.setText("Menú");
+
+        btnCrearIndentificador.setText("Crear Identificador ");
+
+        btnProductoAbierto.setText("Registrar productos abiertos");
+
+        btnProductoVendido.setText("Registrar productos vendidos");
+
+        btnConsultaDisponibilidad.setText("Consultar disponibilidad de productos");
+
+        btnProgramaApertura.setText("Programa apertura de productos");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(409, Short.MAX_VALUE)
+                .addComponent(txtMenu)
+                .addGap(397, 397, 397))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnProgramaApertura)
+                    .addComponent(btnConsultaDisponibilidad)
+                    .addComponent(btnProductoVendido)
+                    .addComponent(btnCrearIndentificador)
+                    .addComponent(btnProductoAbierto))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addComponent(txtMenu)
+                .addGap(30, 30, 30)
+                .addComponent(btnConsultaDisponibilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(btnCrearIndentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(btnProductoVendido, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnProductoAbierto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(btnProgramaApertura, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(133, Short.MAX_VALUE))
         );
 
         pack();
@@ -78,5 +122,11 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnConsultaDisponibilidad;
+    private javax.swing.JButton btnCrearIndentificador;
+    private javax.swing.JButton btnProductoAbierto;
+    private javax.swing.JButton btnProductoVendido;
+    private javax.swing.JButton btnProgramaApertura;
+    private javax.swing.JLabel txtMenu;
     // End of variables declaration//GEN-END:variables
 }
