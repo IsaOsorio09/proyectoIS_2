@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
+import jdk.internal.org.jline.terminal.TerminalBuilder;
 /**
  * La clase inventario representa el sistema de almacenamiento de
  * información de la heladería Helados Pa'todos.
@@ -269,7 +270,7 @@ public class Inventario {
     /**
      * Agrega un producto en la cola indicada
      * 
-     * @param codigo sku del producto
+     * @param sku sku del producto
      * 
      *
      */
@@ -279,8 +280,12 @@ public class Inventario {
     		Producto producto_base = this.tablaSku.get(sku);
     		Producto producto_nuevo = new Producto(producto_base.getSabor(), producto_base.getPresentacion(),
     				producto_base.getMarca(), producto_base.getSku());
+                System.out.println(producto_nuevo.getIdentificador());
     		producto_base.getCola().enqueue(producto_nuevo);
-    		System.out.println("Producto agregado exitosamente");
+
+    		
+
+
     	} else {
     		System.out.println("Sku no existente");
     	}
