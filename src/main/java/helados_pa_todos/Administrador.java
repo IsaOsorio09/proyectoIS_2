@@ -3,7 +3,7 @@ package helados_pa_todos;
 import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
-
+//comentario
 public class Administrador extends Usuario {
     private Map<String, Usuario> usuarios;
 
