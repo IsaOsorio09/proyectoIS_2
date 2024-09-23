@@ -9,6 +9,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <exec.mainClass>com.mycompany.proyectois_2.ProyectoIS_2</exec.mainClass>
+        <exec.mainClass>helados_pa_todos.main</exec.mainClass>
     </properties>
 </project>
