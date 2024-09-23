@@ -279,8 +279,9 @@ public class Inventario {
     		Producto producto_base = this.tablaSku.get(sku);
     		Producto producto_nuevo = new Producto(producto_base.getSabor(), producto_base.getPresentacion(),
     				producto_base.getMarca(), producto_base.getSku());
+                System.out.println(producto_nuevo.getIdentificador());
     		producto_base.getCola().enqueue(producto_nuevo);
-    		System.out.println("Producto agregado exitosamente");
+    		
     	} else {
     		System.out.println("Sku no existente");
     	}
