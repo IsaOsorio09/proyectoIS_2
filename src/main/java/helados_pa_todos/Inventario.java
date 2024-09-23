@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
-import jdk.internal.org.jline.terminal.TerminalBuilder;
+
 /**
  * La clase inventario representa el sistema de almacenamiento de
  * información de la heladería Helados Pa'todos.
