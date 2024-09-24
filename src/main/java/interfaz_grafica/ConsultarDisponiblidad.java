@@ -9,12 +9,14 @@ package interfaz_grafica;
  * @author isaop
  */
 public class ConsultarDisponiblidad extends javax.swing.JFrame {
-
+    private Menu v1;
     /**
      * Creates new form ConsultarDisponiblidad
      */
     public ConsultarDisponiblidad() {
         initComponents();
+    
+       
     }
 
     /**
@@ -26,21 +28,127 @@ public class ConsultarDisponiblidad extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnVolverMenu1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        btnVolverMenu2 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        btnSKU2 = new javax.swing.JComboBox<>();
+        jSeparator1 = new javax.swing.JSeparator();
+        txrDeProduct = new javax.swing.JLabel();
+        txtUnidadesDisponibles = new javax.swing.JTextField();
+        txtUnDis = new javax.swing.JLabel();
+
+        btnVolverMenu1.setText("Volver al Menú Principal");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel1.setText("Verificar disponibildiad de productos");
+
+        btnVolverMenu2.setText("Volver al Menú Principal");
+        btnVolverMenu2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverMenu2ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Selecciona SKU del producto a consultar:");
+
+        btnSKU2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "101 chocolate, 10 Litros, CremHelado", "102 chocolate, 5 Litros, CremHelado", "103 chocolate, 10 Litros, Colombina", "104 chocolate, 5 Litros, Colombina", "105 fresa, 10 Litros, CremHelado", "106 fresa, 5 Litrs, CremHelado", "107 fresa, 10 Litros, Colombina", "108 fresa, 5 Litros, Colombina", "109 vainilla, 10 Litros, CremHelado", "110 vainilla, 5 Litros, CremHelado", "111 vainilla, 10 Litros, Colombina", "112 vainilla, 5 Litros, Colombina" }));
+        btnSKU2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSKU2ActionPerformed(evt);
+            }
+        });
+
+        txrDeProduct.setText("De este produto se tiene ");
+
+        txtUnidadesDisponibles.setEditable(false);
+
+        txtUnDis.setText("unidades disponibles.");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(335, 335, 335)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(161, 161, 161)
+                        .addComponent(jLabel2)
+                        .addGap(109, 109, 109)
+                        .addComponent(btnSKU2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(120, 120, 120)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 750, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(188, 188, 188)
+                                .addComponent(txrDeProduct)
+                                .addGap(43, 43, 43)
+                                .addComponent(txtUnidadesDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGap(382, 382, 382)
+                                .addComponent(btnVolverMenu2)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtUnDis)))
+                .addContainerGap(152, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSKU2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 134, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txrDeProduct)
+                    .addComponent(txtUnidadesDisponibles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUnDis))
+                .addGap(76, 76, 76)
+                .addComponent(btnVolverMenu2))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(25, 25, 25)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSKU2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSKU2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSKU2ActionPerformed
+    public void setv1(Menu v1){
+        this.v1 = v1;
+    }
+    private void btnVolverMenu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverMenu2ActionPerformed
+        v1.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnVolverMenu2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +186,15 @@ public class ConsultarDisponiblidad extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> btnSKU2;
+    private javax.swing.JButton btnVolverMenu1;
+    private javax.swing.JButton btnVolverMenu2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JLabel txrDeProduct;
+    private javax.swing.JLabel txtUnDis;
+    private javax.swing.JTextField txtUnidadesDisponibles;
     // End of variables declaration//GEN-END:variables
 }
