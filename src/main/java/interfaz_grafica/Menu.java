@@ -55,8 +55,18 @@ public class Menu extends javax.swing.JFrame {
         });
 
         btnProgramProducProximo.setText("Programar pedido para próximo pedido");
+        btnProgramProducProximo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProgramProducProximoActionPerformed(evt);
+            }
+        });
 
         btnSeguimientoUsuarios.setText("Llevar seguimiento de usuarios");
+        btnSeguimientoUsuarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSeguimientoUsuariosActionPerformed(evt);
+            }
+        });
 
         btnProductoAbierto.setText("Registrar productos abiertos");
 
@@ -70,6 +80,11 @@ public class Menu extends javax.swing.JFrame {
         });
 
         btnProductoPocaExis.setText("Consultar productos con poca existencia");
+        btnProductoPocaExis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProductoPocaExisActionPerformed(evt);
+            }
+        });
 
         txtMenu.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtMenu.setText("Menú");
@@ -111,7 +126,7 @@ public class Menu extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnProgramaApertura, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(105, 105, 105)))
+                                .addGap(6, 6, 6)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnConsultaProducProgram, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnProductoPocaExis, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
@@ -119,20 +134,19 @@ public class Menu extends javax.swing.JFrame {
                             .addComponent(btnSeguimientoUsuarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnProductoAbierto, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
-                        .addComponent(btnComparaRecibidoRealizado))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(454, 454, 454)
-                        .addComponent(txtMenu)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnComparaRecibidoRealizado, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE))
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnSalirSesion)
-                .addGap(421, 421, 421))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jSeparator1)
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtMenu)
+                        .addGap(408, 408, 408))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(btnSalirSesion)
+                        .addGap(393, 393, 393))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,9 +178,9 @@ public class Menu extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnSeguimientoUsuarios, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnProgramaApertura, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addGap(49, 49, 49)
                 .addComponent(btnSalirSesion)
-                .addGap(42, 42, 42))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -189,7 +203,10 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnComparaRecibidoRealizadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComparaRecibidoRealizadoActionPerformed
-        // TODO add your handling code here:
+        CompararProducto v14 = new CompararProducto();
+        v14.setv1(this);
+        v14.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnComparaRecibidoRealizadoActionPerformed
 
     private void btnCrearIndentificadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearIndentificadorActionPerformed
@@ -208,11 +225,32 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirSesionActionPerformed
 
     private void btnConsultaProducProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaProducProgramActionPerformed
-        ConsultarPocaExistencia v11 = new ConsultarPocaExistencia();
+        ConsultarProductosProgramados v11 = new ConsultarProductosProgramados();
         v11.setv1(this);
         v11.setVisible(true);
-        this.setVisible(false);        
+        this.setVisible(false); 
     }//GEN-LAST:event_btnConsultaProducProgramActionPerformed
+
+    private void btnProductoPocaExisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProductoPocaExisActionPerformed
+        ConsultarPocaExistencia v12 = new ConsultarPocaExistencia();
+        v12.setv1(this);
+        v12.setVisible(true);
+        this.setVisible(false); 
+    }//GEN-LAST:event_btnProductoPocaExisActionPerformed
+
+    private void btnProgramProducProximoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProgramProducProximoActionPerformed
+        ProgramarProductoProximoPedido v13 = new ProgramarProductoProximoPedido();
+        v13.setv1(this);
+        v13.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnProgramProducProximoActionPerformed
+
+    private void btnSeguimientoUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSeguimientoUsuariosActionPerformed
+        LlevarRegistroUsuarios v15 = new LlevarRegistroUsuarios();
+        v15.setv1(this);
+        v15.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnSeguimientoUsuariosActionPerformed
 
     /**
      * @param args the command line arguments
