@@ -36,7 +36,7 @@ public class Inventario {
     
 
     
-    public Inventario(Usuario administrador) {
+    public Inventario() {
         this.chocolate_10 = new Queue();
         this.chocolate_5 = new Queue();
         this.vainilla_10 = new Queue();
@@ -63,7 +63,7 @@ public class Inventario {
     // Mostrar los productos programados
     System.out.println("Productos programados:");
     for (Producto producto : pedidoProgramado) {
-        System.out.println("SKU: " + producto.getSKU());
+        System.out.println("SKU: " + producto.getSKU());    
     }
 
     // Comparar productos pedidos con lo recibido en el inventario
@@ -267,27 +267,24 @@ public class Inventario {
         System.out.println("Vendidos: " + vendido.size());
     }
     
-    /**
-     * Agrega un producto en la cola indicada
-     * 
-     * @param sku sku del producto
-     * 
-     *
-     */
-    public void agregarProducto(int sku) {
+
+    public Producto agregarProducto(int sku) {
+        
     	
     	if (this.tablaSku.get(sku) != null) {
     		Producto producto_base = this.tablaSku.get(sku);
     		Producto producto_nuevo = new Producto(producto_base.getSabor(), producto_base.getPresentacion(),
     				producto_base.getMarca(), producto_base.getSku());
-                System.out.println(producto_nuevo.getIdentificador());
+                
     		producto_base.getCola().enqueue(producto_nuevo);
+                return producto_nuevo;
 
     		
 
 
     	} else {
     		System.out.println("Sku no existente");
+                return null;
     	}
 
     }
@@ -303,43 +300,49 @@ public class Inventario {
     	
     }
     
-    public void venderProducto(int sku) {
+    public Producto venderProducto(int sku) {
     	
     	if (this.tablaSku.get(sku) != null) {
     		Producto temp = this.tablaSku.get(sku).getCola().dequeue();
     		temp.vender();
     		this.vendido.add(temp);
+                return temp;
     	}
     	else {
     		System.out.println("Sku no válido");
+                return null;
     	}
     
     	}
     
-    public void abrirProducto(int sku) {
+    public Producto abrirProducto(int sku) {
     	
     	if (this.tablaSku.get(sku) != null) {
     		Producto temp = this.tablaSku.get(sku).getCola().dequeue();
     		temp.abrir();
     		this.abierto.add(temp);
+                return temp;
     	}
     	else {
     		System.out.println("Sku no válido");
+                return null;
     	}
     	
     }
     
-    public void realizarApertura() {
-    	
+    public ArrayList<Producto> realizarApertura() {
+    	ArrayList<Producto> productos = new ArrayList<>();
     	Iterator<Producto> iterador = this.aperturaProgramada.iterator();
     	while(iterador.hasNext()) {
     		Producto producto = iterador.next();
     		iterador.remove();
     		producto.abrir();
     		this.abierto.add(producto);
+                productos.add(producto);
     		System.out.println("Producto a abrir: ");
     		System.out.println(producto);
     	}
+        return productos;
     }
  // FUNCIONALIDAD 6
     public void consultarProductosConPocaExistencia() {
@@ -378,12 +381,10 @@ public class Inventario {
     //  Se va a mostrar solo cantidad de disponible dependiendo del sku
     // El sku de cualquier chocolate de 10 lts dará acceso a todos los 
     // chocolates de 10 lts sin distinción de marca
-    public void mostrarDisponible(int sku) {
+    public int mostrarDisponible(int sku) {
     	
             Producto temp = this.tablaSku.get(sku);
-            System.out.println("Sabor: " + temp.getSabor());
-            System.out.println("Presentacióm: " + temp.getSabor());
-            System.out.println("Unidades: " + temp.getCola().size());
+            return temp.getCola().size();
     }
     
     public void mostrarSku() {
