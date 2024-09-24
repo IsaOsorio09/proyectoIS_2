@@ -18,7 +18,6 @@ public class Inventario {
     private ArrayList<Producto> aperturaProgramada = new ArrayList<>();
     private ArrayList<Producto> abierto = new ArrayList<>();
     private ArrayList<Producto> vendido = new ArrayList<>();
-    private ArrayList<Producto> pedidoProgramado = new ArrayList<>();//Parte de la funcionalidad 9, lineas 60
     private Queue chocolate_10;
     private Queue chocolate_5;
     private Queue vainilla_10;
@@ -26,14 +25,15 @@ public class Inventario {
     private Queue fresa_10;
     private Queue fresa_5;
     private Map<Integer, Integer> pedidosRealizados = new HashMap<>();
+    private Map<Integer, Integer> pedidosLlegados = new HashMap<>();
 
     
     // Tabla Hash donde almacenaremos los sku
     // Cada clave sera un sku(Int) y el valor contenido es un Producto
     // El producto contenido por cada sku es un producto base para crear los productos que
     // entran al inventario.
+
     private final Map<Integer, Producto> tablaSku = new HashMap<>();
-    
 
     
     public Inventario() {
@@ -56,66 +56,8 @@ public class Inventario {
         this.tablaSku.put(111, new Producto("vainilla", "10", "Colombina", 111, this.vainilla_10));
         this.tablaSku.put(112, new Producto("vainilla", "5", "Colombina", 112, this.vainilla_5));
         
-        
-    }
-    //Parte de la funcionalidad 9
-    public void compararPedidoConInventario() {
-    // Mostrar los productos programados
-    System.out.println("Productos programados:");
-    for (Producto producto : pedidoProgramado) {
-        System.out.println("SKU: " + producto.getSKU());    
     }
 
-    // Comparar productos pedidos con lo recibido en el inventario
-    for (Map.Entry<Integer, Integer> entry : pedidosRealizados.entrySet()) {
-        int sku = entry.getKey();
-        int cantidadPedida = entry.getValue();
-        int cantidadEnInventario = obtenerCantidadEnInventario(sku);
-
-        if (cantidadEnInventario >= cantidadPedida) {
-            System.out.println("Pedido completo para SKU " + sku);
-        } else if (cantidadEnInventario > 0) {
-            System.out.println("Pedido parcial para SKU " + sku + ": " + cantidadEnInventario + "/" + cantidadPedida);
-        } else {
-            System.out.println("Producto no recibido para SKU " + sku);
-        }
-    }
-}
-
-    // Método para obtener la cantidad en inventario de un SKU específico
-    private int obtenerCantidadEnInventario(int sku) {
-    int cantidad = 0;
-
-    // Recorre las listas y colas para contar productos de este SKU
-    for (Producto producto : usuario) {
-        if (producto.getSKU() == sku) {
-            cantidad++;
-        }
-    }
-    for (Producto producto : aperturaProgramada) {
-        if (producto.getSKU() == sku) {
-            cantidad++;
-        }
-    }
-    for (Producto producto : abierto) {
-        if (producto.getSKU() == sku) {
-            cantidad++;
-        }
-    }
-    for (Producto producto : vendido) {
-        if (producto.getSKU() == sku) {
-            cantidad++;
-        }
-    }
-
-    // Aquí podrías agregar lógica adicional si es necesario para otras estructuras como las colas
-    // Ejemplo: revisar las colas de chocolate, vainilla, fresa, etc.
-
-    return cantidad;
-}
-
-
-    
     public void mostrarApertura() {
     	for (int i = 0; i < this.getAperturaProgramada().size(); i++) {
     		System.out.println(this.getAperturaProgramada().get(i));
@@ -132,13 +74,6 @@ public class Inventario {
     	for (int i = 0; i < this.getVendido().size(); i++) {
     		System.out.println(this.getVendido().get(i));
     	}
-    }
-
-    
-   
-
-    public ArrayList<Producto> getAperturasProgramadas() {
-        return aperturaProgramada;
     }
 
     public ArrayList<Producto> getAbiertos() {
@@ -190,16 +125,6 @@ public class Inventario {
 	public void setVendido(ArrayList<Producto> vendido) {
 		this.vendido = vendido;
 	}
-
-	 //nuevo
-    	public ArrayList<Producto> getpedidoProgramado(){
-    		return pedidoProgramado;
-    	}
-    
-   	public void setPedidoProgramado(ArrayList<Producto> pedidoProgramado ) {
-		this.pedidoProgramado = pedidoProgramado;
-	}
-
 
 	public Queue getChocolate_10() {
 		return chocolate_10;
@@ -402,43 +327,90 @@ public class Inventario {
         System.out.println("111: Sabor Fresa, Colombina, 10 Litros");
         System.out.println("112: Sabor Fresa, Colombina, 5 Litros");
     }
+    //ACA
+    //Parte de la funcionalidad 9
+    public void registrarPedidoLlegado(int sku, int cantidad) {
+    pedidosLlegados.put(sku, cantidad);
 
-	//nuevo
-	public void mostrarPedidoProgramado() {
-	    	
-	    	if (this.getChocolate_10().isEmpty()) {
-	    		Producto programado = new Producto("Chocolate", "10");
-	    		this.aperturaProgramada.add(programado);
-	    	}
-	    	
-	    	if (this.getChocolate_5().isEmpty()) {
-	    		Producto programado = new Producto("Chocolate", "5");
-	    		this.aperturaProgramada.add(programado);
-	    	}
-	    	
-	    	if(this.getVainilla_10().isEmpty()) {
-	    		Producto programado = new Producto("Vainilla", "10");
-	    		this.aperturaProgramada.add(programado);
-	    	}
-	    	
-	    	if (this.getVainilla_5().isEmpty()) {
-	    		Producto programado = new Producto("Vainilla", "5");
-	    		this.aperturaProgramada.add(programado);
-	    	}
-	    	
-	    	if (this.getFresa_10().isEmpty()) {
-	    		Producto programado = new Producto("Fresa", "10");
-	    		this.aperturaProgramada.add(programado);
-	    	}
-	    	if (this.getFresa_5().isEmpty()) {
-	    		Producto programado = new Producto("Fresa", "5");
-	    		this.aperturaProgramada.add(programado);
-	    	}
-	    	
-	    	for (Producto p : aperturaProgramada) {
-	    		System.out.println(p.mostrarProducto());
-	    	}
-	}
-	    
+    // Ciclo para agregar 'cantidad' de productos al inventario
+    for (int i = 0; i < cantidad; i++) {
+        agregarProducto(sku); // Agrega el producto al inventario 'cantidad' veces
+    }
+    System.out.println("Pedido registrado: SKU " + sku + ", Cantidad llegada: " + cantidad);
+}
+
     
+    public void registrarPedido(int sku, int cantidad) {
+        pedidosRealizados.put(sku, cantidad);
+        System.out.println("Pedido registrado: SKU " + sku + ", Pedida: " + cantidad);
+    }
+    
+    //¿EL PEDIDO CUANDO SE HACE?
+    //EL PEDIDO EN ESTE CASO SOLO SE HACE CUANDO HAY POCAS EXISTENCIAS
+    public void PedidoProgramado() {
+	    	
+    if (this.getChocolate_10().isEmpty()) {
+	registrarPedido(1001, 10);
+	}
+    
+    if (this.getChocolate_5().isEmpty()) {
+	registrarPedido(1002, 10);
+	    	}
+	    	
+    if(this.getVainilla_10().isEmpty()) {
+	registrarPedido(1003, 10);
+	    	}
+	    	
+    if (this.getVainilla_5().isEmpty()) {
+	registrarPedido(1004, 10);
+	    	}
+	    	
+    if (this.getFresa_10().isEmpty()) {
+	registrarPedido(1005, 10);
+	    	}
+    if (this.getFresa_5().isEmpty()) {
+	registrarPedido(1006, 10);
+	}
+     }
+    
+    ///ESTO ES LO IMPORTANTE DE LA FUNCIONALIDAD 9 DEVUELVE NOMBRE SKU CANTIDAD PEDIDA Y CANTIDAD LLEGADA
+public boolean compararPedidoConLlegada() {
+    boolean todosCompletos = true; // Inicialmente, asumimos que todos los pedidos están completos
+    
+    for (Map.Entry<Integer, Integer> pedidoRealizado : pedidosRealizados.entrySet()) {
+        int sku = pedidoRealizado.getKey();
+        int cantidadPedida = pedidoRealizado.getValue();
+        int cantidadLlegada = pedidosLlegados.getOrDefault(sku, 0);
+        
+        String nombreProducto = obtenerNombreSKU(sku);
+        System.out.println("SKU: " + sku + " (" + nombreProducto + "), Cantidad pedida: " + cantidadPedida + ", Cantidad llegada: " + cantidadLlegada);
+        
+        if (cantidadPedida != cantidadLlegada) {
+            int cantidadFaltante = cantidadPedida - cantidadLlegada;
+            System.out.println("Cantidad faltante para SKU " + sku + ": " + cantidadFaltante);
+            todosCompletos = false; // Si hay diferencias, indicamos que no todos los pedidos están completos
+            registrarPedido(sku,10);
+        }
+    }
+    
+    // Vaciar los mapas después de la comparación
+    pedidosRealizados.clear();
+    pedidosLlegados.clear();
+
+    return todosCompletos; // Retorna true si todos los pedidos fueron completados, false si alguno no lo fue
+}
+
+
+    private String obtenerNombreSKU(int sku) {
+    switch (sku) {
+        case 1001: return "Chocolate 10";
+        case 1002: return "Chocolate 5";
+        case 1003: return "Vainilla 10";
+        case 1004: return "Vainilla 5";
+        case 1005: return "Fresa 10";
+        case 1006: return "Fresa 5";
+        default: return "Desconocido";
+    }
+}
+
 }
