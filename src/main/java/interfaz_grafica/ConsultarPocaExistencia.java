@@ -9,7 +9,7 @@ package interfaz_grafica;
  * @author Pc1
  */
 public class ConsultarPocaExistencia extends javax.swing.JFrame {
-
+    private Menu v1;
     /**
      * Creates new form ConsultarPocaDisponibilidad
      */
@@ -30,7 +30,7 @@ public class ConsultarPocaExistencia extends javax.swing.JFrame {
         BotonConsultar = new javax.swing.JButton();
         PanelPocaExistencia = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
+        BtnVolverMenu = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
@@ -61,7 +61,12 @@ public class ConsultarPocaExistencia extends javax.swing.JFrame {
                 .addGap(0, 225, Short.MAX_VALUE))
         );
 
-        jButton1.setText("Volver al Menú Principal");
+        BtnVolverMenu.setText("Volver al Menú Principal");
+        BtnVolverMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnVolverMenuActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("A continuación, se mostrarán los prodcutos que tienen 2 o menos ");
 
@@ -82,7 +87,7 @@ public class ConsultarPocaExistencia extends javax.swing.JFrame {
                         .addComponent(BotonConsultar)
                         .addGap(379, 379, 379))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(BtnVolverMenu)
                         .addGap(337, 337, 337))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel2)
@@ -108,7 +113,7 @@ public class ConsultarPocaExistencia extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addComponent(PanelPocaExistencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addComponent(BtnVolverMenu)
                 .addGap(31, 31, 31))
         );
 
@@ -118,6 +123,15 @@ public class ConsultarPocaExistencia extends javax.swing.JFrame {
     private void BotonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonConsultarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BotonConsultarActionPerformed
+    
+    public void setv1(Menu v1){
+        this.v1 = v1;
+    }
+    
+    private void BtnVolverMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVolverMenuActionPerformed
+        v1.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_BtnVolverMenuActionPerformed
 
     /**
      * @param args the command line arguments
@@ -157,8 +171,8 @@ public class ConsultarPocaExistencia extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonConsultar;
+    private javax.swing.JButton BtnVolverMenu;
     private javax.swing.JPanel PanelPocaExistencia;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;

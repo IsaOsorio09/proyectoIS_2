@@ -9,7 +9,7 @@ package interfaz_grafica;
  * @author Pc1
  */
 public class CompararProducto extends javax.swing.JFrame {
-
+    private Menu v1;
     /**
      * Creates new form CompararProducto
      */
@@ -26,7 +26,7 @@ public class CompararProducto extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        BtnVolverMenuCP = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         txtprogramar1 = new javax.swing.JLabel();
@@ -41,7 +41,12 @@ public class CompararProducto extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("Volver al Menú Principal");
+        BtnVolverMenuCP.setText("Volver al Menú Principal");
+        BtnVolverMenuCP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnVolverMenuCPActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Comparar Prodcuto Recibido con Producto Pedido");
 
@@ -134,7 +139,7 @@ public class CompararProducto extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(344, 344, 344)
-                        .addComponent(jButton1)))
+                        .addComponent(BtnVolverMenuCP)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -147,12 +152,21 @@ public class CompararProducto extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addComponent(jButton1)
+                .addComponent(BtnVolverMenuCP)
                 .addGap(27, 27, 27))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public void setv1(Menu v1){
+        this.v1 = v1;
+    }
+    
+    private void BtnVolverMenuCPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVolverMenuCPActionPerformed
+        v1.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_BtnVolverMenuCPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,7 +204,7 @@ public class CompararProducto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton BtnVolverMenuCP;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;

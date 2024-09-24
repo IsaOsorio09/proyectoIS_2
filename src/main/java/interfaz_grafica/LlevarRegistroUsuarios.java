@@ -9,7 +9,7 @@ package interfaz_grafica;
  * @author Pc1
  */
 public class LlevarRegistroUsuarios extends javax.swing.JFrame {
-
+    private Menu v1;
     /**
      * Creates new form LlevarRegistroUsuarios
      */
@@ -27,7 +27,7 @@ public class LlevarRegistroUsuarios extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        BtnVolverMenuLRU = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel2 = new javax.swing.JLabel();
@@ -37,7 +37,12 @@ public class LlevarRegistroUsuarios extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("Llevar Registro de Usuarios");
 
-        jButton1.setText("Volver al Menú Principal");
+        BtnVolverMenuLRU.setText("Volver al Menú Principal");
+        BtnVolverMenuLRU.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnVolverMenuLRUActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -62,7 +67,7 @@ public class LlevarRegistroUsuarios extends javax.swing.JFrame {
                 .addContainerGap(88, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(BtnVolverMenuLRU)
                         .addGap(351, 351, 351))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -84,12 +89,21 @@ public class LlevarRegistroUsuarios extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(39, 39, 39)
-                .addComponent(jButton1)
+                .addComponent(BtnVolverMenuLRU)
                 .addGap(35, 35, 35))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    public void setv1(Menu v1){
+        this.v1 = v1;
+    }
+    
+    private void BtnVolverMenuLRUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVolverMenuLRUActionPerformed
+        v1.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_BtnVolverMenuLRUActionPerformed
 
     /**
      * @param args the command line arguments
@@ -127,7 +141,7 @@ public class LlevarRegistroUsuarios extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton BtnVolverMenuLRU;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
