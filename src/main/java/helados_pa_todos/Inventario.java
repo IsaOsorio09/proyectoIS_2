@@ -337,13 +337,12 @@ public class Inventario {
     //ACA
     //Parte de la funcionalidad 9
     public void registrarPedidoLlegado(int sku, int cantidad) {
-    pedidosLlegados.put(sku, pedidosLlegados.getOrDefault(sku, 0) + cantidad);
+    pedidosLlegados.put(sku, cantidad);
 
     // Ciclo para agregar 'cantidad' de productos al inventario
     for (int i = 0; i < cantidad; i++) {
         agregarProducto(sku); // Agrega el producto al inventario 'cantidad' veces
     }
-
     System.out.println("Pedido registrado: SKU " + sku + ", Cantidad llegada: " + cantidad);
 }
 
@@ -382,7 +381,9 @@ public class Inventario {
      }
     
     ///ESTO ES LO IMPORTANTE DE LA FUNCIONALIDAD 9 DEVUELVE NOMBRE SKU CANTIDAD PEDIDA Y CANTIDAD LLEGADA
-    public void compararPedidoConLlegada() {
+public boolean compararPedidoConLlegada() {
+    boolean todosCompletos = true; // Inicialmente, asumimos que todos los pedidos están completos
+    
     for (Map.Entry<Integer, Integer> pedidoRealizado : pedidosRealizados.entrySet()) {
         int sku = pedidoRealizado.getKey();
         int cantidadPedida = pedidoRealizado.getValue();
@@ -390,10 +391,22 @@ public class Inventario {
         
         String nombreProducto = obtenerNombreSKU(sku);
         System.out.println("SKU: " + sku + " (" + nombreProducto + "), Cantidad pedida: " + cantidadPedida + ", Cantidad llegada: " + cantidadLlegada);
+        
+        if (cantidadPedida != cantidadLlegada) {
+            int cantidadFaltante = cantidadPedida - cantidadLlegada;
+            System.out.println("Cantidad faltante para SKU " + sku + ": " + cantidadFaltante);
+            todosCompletos = false; // Si hay diferencias, indicamos que no todos los pedidos están completos
+            registrarPedido(sku,10);
+        }
     }
+    
+    // Vaciar los mapas después de la comparación
     pedidosRealizados.clear();
     pedidosLlegados.clear();
+
+    return todosCompletos; // Retorna true si todos los pedidos fueron completados, false si alguno no lo fue
 }
+
 
     private String obtenerNombreSKU(int sku) {
     switch (sku) {
