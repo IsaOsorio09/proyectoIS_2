@@ -76,13 +76,6 @@ public class Inventario {
     	}
     }
 
-    
-   
-
-    public ArrayList<Producto> getAperturasProgramadas() {
-        return aperturaProgramada;
-    }
-
     public ArrayList<Producto> getAbiertos() {
         return abierto;
     }
