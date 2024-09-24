@@ -6,6 +6,7 @@ import interfaz_grafica.ConsultarDisponiblidad;
 import interfaz_grafica.ResgistraVendidos;
 import interfaz_grafica.ResgistraAbiertos;
 import interfaz_grafica.ProgramarApertura;
+
 import interfaz_grafica.ConsultarPocaExistencia;
 import interfaz_grafica.ConsultarProductosProgramados;
 import interfaz_grafica.ProgramarProductoProximoPedido;
