@@ -28,14 +28,15 @@ public class ConsultarPocaExistencia extends javax.swing.JFrame {
 
         txtConsultarProducto = new javax.swing.JLabel();
         BotonConsultar = new javax.swing.JButton();
-        txtPocaExistencia = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
         PanelPocaExistencia = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        txtConsultarProducto.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         txtConsultarProducto.setText("Consultar Producto Con Poca Existencia");
 
         BotonConsultar.setText("Consultar");
@@ -44,11 +45,6 @@ public class ConsultarPocaExistencia extends javax.swing.JFrame {
                 BotonConsultarActionPerformed(evt);
             }
         });
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jTextArea1.setText("A continuación, se mostrarán los prodcutos que tienen 2 o menos \n                          unidades en el inventario actualmente  ");
-        txtPocaExistencia.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout PanelPocaExistenciaLayout = new javax.swing.GroupLayout(PanelPocaExistencia);
         PanelPocaExistencia.setLayout(PanelPocaExistenciaLayout);
@@ -67,31 +63,36 @@ public class ConsultarPocaExistencia extends javax.swing.JFrame {
 
         jButton1.setText("Volver al Menú Principal");
 
+        jLabel1.setText("A continuación, se mostrarán los prodcutos que tienen 2 o menos ");
+
+        jLabel2.setText("  unidades en el inventario actualmente ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(321, 321, 321)
-                        .addComponent(txtConsultarProducto))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(PanelPocaExistencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(66, 66, 66)
+                .addComponent(PanelPocaExistencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 67, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(txtPocaExistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 379, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(233, 233, 233))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(BotonConsultar)
                         .addGap(379, 379, 379))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addGap(337, 337, 337))))
+                        .addGap(337, 337, 337))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(303, 303, 303))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(216, 216, 216))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(txtConsultarProducto)
+                        .addGap(270, 270, 270))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,8 +100,10 @@ public class ConsultarPocaExistencia extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addComponent(txtConsultarProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPocaExistencia, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel1)
+                .addGap(3, 3, 3)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
                 .addComponent(BotonConsultar)
                 .addGap(41, 41, 41)
                 .addComponent(PanelPocaExistencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -156,9 +159,9 @@ public class ConsultarPocaExistencia extends javax.swing.JFrame {
     private javax.swing.JButton BotonConsultar;
     private javax.swing.JPanel PanelPocaExistencia;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel txtConsultarProducto;
-    private javax.swing.JScrollPane txtPocaExistencia;
     // End of variables declaration//GEN-END:variables
 }
