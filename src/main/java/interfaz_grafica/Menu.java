@@ -63,6 +63,11 @@ public class Menu extends javax.swing.JFrame {
         btnProductoVendido.setText("Registrar productos vendidos");
 
         btnConsultaProducProgram.setText("Consultar productos programados");
+        btnConsultaProducProgram.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultaProducProgramActionPerformed(evt);
+            }
+        });
 
         btnProductoPocaExis.setText("Consultar productos con poca existencia");
 
@@ -114,7 +119,7 @@ public class Menu extends javax.swing.JFrame {
                             .addComponent(btnSeguimientoUsuarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(btnProductoAbierto, javax.swing.GroupLayout.PREFERRED_SIZE, 428, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
                         .addComponent(btnComparaRecibidoRealizado))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(454, 454, 454)
@@ -199,8 +204,15 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnConsultaDisponibilidadActionPerformed
 
     private void btnSalirSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirSesionActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_btnSalirSesionActionPerformed
+
+    private void btnConsultaProducProgramActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultaProducProgramActionPerformed
+        ConsultarPocaExistencia v11 = new ConsultarPocaExistencia();
+        v11.setv1(this);
+        v11.setVisible(true);
+        this.setVisible(false);        
+    }//GEN-LAST:event_btnConsultaProducProgramActionPerformed
 
     /**
      * @param args the command line arguments

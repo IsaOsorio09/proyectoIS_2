@@ -71,7 +71,7 @@
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="btnProductoAbierto" min="-2" pref="428" max="-2" attributes="0"/>
-                          <EmptySpace pref="99" max="32767" attributes="0"/>
+                          <EmptySpace pref="150" max="32767" attributes="0"/>
                           <Component id="btnComparaRecibidoRealizado" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -176,6 +176,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Consultar productos programados"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnConsultaProducProgramActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnProductoPocaExis">
           <Properties>
