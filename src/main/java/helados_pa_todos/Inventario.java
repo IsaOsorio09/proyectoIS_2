@@ -32,12 +32,8 @@ public class Inventario {
     // Cada clave sera un sku(Int) y el valor contenido es un Producto
     // El producto contenido por cada sku es un producto base para crear los productos que
     // entran al inventario.
-<<<<<<< Updated upstream
+
     private final Map<Integer, Producto> tablaSku = new HashMap<>();
-    
-=======
-    private Map<Integer, Producto> tablaSku = new HashMap<>();
->>>>>>> Stashed changes
 
     
     public Inventario() {
@@ -60,19 +56,7 @@ public class Inventario {
         this.tablaSku.put(111, new Producto("vainilla", "10", "Colombina", 111, this.vainilla_10));
         this.tablaSku.put(112, new Producto("vainilla", "5", "Colombina", 112, this.vainilla_5));
         
-        
-<<<<<<< Updated upstream
     }
-    //Parte de la funcionalidad 9
-    public void compararPedidoConInventario() {
-    // Mostrar los productos programados
-    System.out.println("Productos programados:");
-    for (Producto producto : pedidoProgramado) {
-        System.out.println("SKU: " + producto.getSKU());    
-    }
-=======
-    }    
->>>>>>> Stashed changes
 
     public void mostrarApertura() {
     	for (int i = 0; i < this.getAperturaProgramada().size(); i++) {
