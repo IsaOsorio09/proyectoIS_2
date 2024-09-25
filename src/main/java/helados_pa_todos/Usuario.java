@@ -8,7 +8,7 @@ public class Usuario {
 	protected String tipo;
 	protected String contraseña;
 	protected String documento;
-	protected List<String> permisos;
+	protected List<Integer> permisos;
 	protected List<RegistroModificaciones> registros;
 
     public Usuario(String nombre, String tipo, String contraseña, String documento) {
@@ -52,16 +52,33 @@ public class Usuario {
         this.documento = documento;
     }
 
-    public List<String> getPermisos() {
-        return permisos;
+    public List<Integer> getPermisos() {
+        
+       
+            return permisos;
+        
+       
     }
 
-    public void agregarPermiso(String permiso) {
-        this.permisos.add(permiso);
+    public boolean agregarPermiso(int permiso, Usuario user) {
+        if (user.getTipo().equals("admin") && 1 <= permiso && permiso <= 3){
+            this.permisos.add(permiso);
+            return true;
+        }else{
+            return false;
+        }
+              
+        
     }
 
-    public void removerPermiso(String permiso) {
-        this.permisos.remove(permiso);
+    public boolean removerPermiso(int permiso, Usuario user) {
+        if(user.getTipo().equals("admin") && 1 <= permiso && permiso <= 3){
+            this.permisos.remove(permiso);
+            return true;
+        }else{
+            return false;
+        }
+        
     }
 
     public List<RegistroModificaciones> getRegistros() {

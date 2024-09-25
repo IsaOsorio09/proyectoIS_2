@@ -26,7 +26,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="52" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -34,7 +34,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="7" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -47,49 +47,40 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jSeparator1" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="btnProductoVendido" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="btnCrearIndentificador" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="btnConsultaDisponibilidad" alignment="0" pref="428" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="btnProgramaApertura" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnProductoVendido" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="btnProductoAbierto" max="32767" attributes="0"/>
+                                  <Component id="btnConsultaDisponibilidad" alignment="0" pref="445" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" attributes="0">
-                                  <Component id="btnProgramaApertura" max="32767" attributes="0"/>
-                                  <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="btnRegistrarProducto" alignment="0" min="-2" pref="439" max="-2" attributes="0"/>
                           </Group>
+                          <EmptySpace pref="184" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="btnComparaRecibidoRealizado" max="32767" attributes="0"/>
                               <Component id="btnConsultaProducProgram" alignment="0" max="32767" attributes="0"/>
                               <Component id="btnProductoPocaExis" alignment="0" pref="428" max="32767" attributes="0"/>
                               <Component id="btnProgramProducProximo" alignment="0" max="32767" attributes="0"/>
                               <Component id="btnSeguimientoUsuarios" alignment="1" max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="btnProductoAbierto" min="-2" pref="428" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnComparaRecibidoRealizado" pref="428" max="32767" attributes="0"/>
-                      </Group>
-                      <Component id="jSeparator1" alignment="1" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="txtMenu" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="408" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Component id="btnSalirSesion" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="393" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <Component id="txtMenu" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="502" max="-2" attributes="0"/>
+              </Group>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="373" max="-2" attributes="0"/>
+                  <Component id="btnSalirSesion" min="-2" pref="114" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
+                  <Component id="btnClose" min="-2" pref="111" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -105,12 +96,12 @@
                           <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="btnConsultaProducProgram" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                              <Component id="btnConsultaDisponibilidad" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="btnRegistrarProducto" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="btnCrearIndentificador" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                               <Component id="btnProductoPocaExis" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                              <Component id="btnConsultaDisponibilidad" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -131,9 +122,12 @@
                       <Component id="btnSeguimientoUsuarios" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="btnProgramaApertura" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                  <Component id="btnSalirSesion" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="48" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="btnClose" pref="50" max="32767" attributes="0"/>
+                      <Component id="btnSalirSesion" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -143,6 +137,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Programa apertura de productos"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProgramaAperturaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnComparaRecibidoRealizado">
           <Properties>
@@ -172,11 +169,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Registrar productos abiertos"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProductoAbiertoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnProductoVendido">
           <Properties>
             <Property name="text" type="java.lang.String" value="Registrar productos vendidos"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProductoVendidoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnConsultaProducProgram">
           <Properties>
@@ -202,12 +205,12 @@
             <Property name="text" type="java.lang.String" value="Men&#xfa;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnCrearIndentificador">
+        <Component class="javax.swing.JButton" name="btnRegistrarProducto">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Crear Identificador "/>
+            <Property name="text" type="java.lang.String" value="Registrar producto"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearIndentificadorActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarProductoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnConsultaDisponibilidad">
@@ -227,6 +230,14 @@
           </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
+        </Component>
+        <Component class="javax.swing.JButton" name="btnClose">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cerrar Sesi&#xf3;n"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCloseActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

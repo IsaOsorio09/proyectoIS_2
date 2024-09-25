@@ -3,17 +3,32 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package interfaz_grafica;
-
+import helados_pa_todos.Inventario;
+import helados_pa_todos.Usuario;
+import helados_pa_todos.ListaSimple;
+import helados_pa_todos.NodoSimple;
+import helados_pa_todos.Pedido;
+import helados_pa_todos.Producto;
+import helados_pa_todos.Queue;
+import helados_pa_todos.RegistroModificaciones;
+import helados_pa_todos.Usuario;
+import java.util.Map;
+import java.util.HashMap;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Pc1
  */
 public class ConsultarPocaExistencia extends javax.swing.JFrame {
     private Menu v1;
+    public Inventario inv;
+    public Usuario user;
     /**
      * Creates new form ConsultarPocaDisponibilidad
      */
-    public ConsultarPocaExistencia() {
+    public ConsultarPocaExistencia(Inventario inv, Usuario user) {
+        this.inv = inv;
+        this.user = user;
         initComponents();
     }
 
@@ -30,6 +45,8 @@ public class ConsultarPocaExistencia extends javax.swing.JFrame {
         BotonConsultar = new javax.swing.JButton();
         PanelPocaExistencia = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtProd = new javax.swing.JTextArea();
         BtnVolverMenu = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -46,6 +63,10 @@ public class ConsultarPocaExistencia extends javax.swing.JFrame {
             }
         });
 
+        txtProd.setColumns(20);
+        txtProd.setRows(5);
+        jScrollPane1.setViewportView(txtProd);
+
         javax.swing.GroupLayout PanelPocaExistenciaLayout = new javax.swing.GroupLayout(PanelPocaExistencia);
         PanelPocaExistencia.setLayout(PanelPocaExistenciaLayout);
         PanelPocaExistenciaLayout.setHorizontalGroup(
@@ -53,12 +74,18 @@ public class ConsultarPocaExistencia extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelPocaExistenciaLayout.createSequentialGroup()
                 .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 703, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(PanelPocaExistenciaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 681, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelPocaExistenciaLayout.setVerticalGroup(
             PanelPocaExistenciaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanelPocaExistenciaLayout.createSequentialGroup()
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 225, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 15, Short.MAX_VALUE))
         );
 
         BtnVolverMenu.setText("Volver al Menú Principal");
@@ -121,7 +148,21 @@ public class ConsultarPocaExistencia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BotonConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonConsultarActionPerformed
-        // TODO add your handling code here:
+        
+        Map<String,Integer> mapa = this.inv.consultarProductosConPocaExistencia(user);
+        
+        if (mapa != null){
+            StringBuilder sb = new StringBuilder();
+            if(mapa.isEmpty()){
+                txtProd.setText("No hay productos con poca disponibilidad");
+            } else {
+                for(Map.Entry<String, Integer> entry : mapa.entrySet()) {
+                    sb.append(entry.getKey()).append(", Cantidad: ").append(entry.getValue()).append("\n");
+                }
+            } txtProd.setText(sb.toString()); 
+        } else {
+            JOptionPane.showMessageDialog(null, "Ooops, no tienes los permisos para realizar esto", "Error de permiso", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_BotonConsultarActionPerformed
     
     public void setv1(Menu v1){
@@ -133,41 +174,7 @@ public class ConsultarPocaExistencia extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_BtnVolverMenuActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConsultarPocaExistencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConsultarPocaExistencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConsultarPocaExistencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConsultarPocaExistencia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ConsultarPocaExistencia().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonConsultar;
@@ -175,7 +182,9 @@ public class ConsultarPocaExistencia extends javax.swing.JFrame {
     private javax.swing.JPanel PanelPocaExistencia;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel txtConsultarProducto;
+    private javax.swing.JTextArea txtProd;
     // End of variables declaration//GEN-END:variables
 }

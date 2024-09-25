@@ -14,7 +14,8 @@ import java.util.Scanner;
 
 public class Inventario {
 
-    private ArrayList<Producto> usuario = new ArrayList<>();
+    private ArrayList<Usuario> usuario = new ArrayList<>();
+    private Map<String, Usuario> passwords = new HashMap<>();
     private ArrayList<Producto> aperturaProgramada = new ArrayList<>();
     private ArrayList<Producto> abierto = new ArrayList<>();
     private ArrayList<Producto> vendido = new ArrayList<>();
@@ -24,8 +25,8 @@ public class Inventario {
     private Queue vainilla_5;
     private Queue fresa_10;
     private Queue fresa_5;
-    private Map<Integer, Integer> pedidosRealizados = new HashMap<>();
-    private Map<Integer, Integer> pedidosLlegados = new HashMap<>();
+    private Map<Integer, Integer> pedidoProgramado = new HashMap<>();
+    private Map<Integer, Integer> pedidoLlegado = new HashMap<>();
 
     
     // Tabla Hash donde almacenaremos los sku
@@ -55,8 +56,55 @@ public class Inventario {
         this.tablaSku.put(110, new Producto("vainilla", "5", "CremHelado", 110, this.vainilla_5));
         this.tablaSku.put(111, new Producto("vainilla", "10", "Colombina", 111, this.vainilla_10));
         this.tablaSku.put(112, new Producto("vainilla", "5", "Colombina", 112, this.vainilla_5));
-        
+        Usuario user = new Usuario("Jeronimo","admin","123","1005259443");
+        Usuario user1 = new Usuario("Isa","Cajera","123","1");
+        Usuario user2 = new Usuario("Ana","Encargada del inventario","123","12");
+        Usuario user3 = new Usuario("Juan","Cajera","123","13");
+        Usuario user4 = new Usuario("Vale","admin","123","14");
+        user.getPermisos().add(1);
+        user.getPermisos().add(2);
+        user.getPermisos().add(3);
+        user1.getPermisos().add(1);
+        user1.getPermisos().add(2);
+        user1.getPermisos().add(3);
+        user2.getPermisos().add(1);
+        user2.getPermisos().add(2);
+        user2.getPermisos().add(3);
+        user3.getPermisos().add(1);
+        user3.getPermisos().add(2);
+        user3.getPermisos().add(3);
+        user4.getPermisos().add(1);
+        user4.getPermisos().add(2);
+        user4.getPermisos().add(3);
+        this.usuario.add(user);
+        this.usuario.add(user1);
+        this.usuario.add(user2);
+        this.usuario.add(user3);
+        this.usuario.add(user4);
+    
     }
+    
+    public void añadirContraseñas(){
+        
+        for(int i = 0; i < this.getUsuario().size(); i++){
+            this.getPasswords().put(this.getUsuario().get(i).getDocumento(), this.getUsuario().get(i));
+        }
+    }
+
+    public Map<String, Usuario> getPasswords() {
+        return passwords;
+    }
+    
+    public Usuario login(String id, String contrasena){
+        if(this.getPasswords().get(id) != null && this.getPasswords().get(id).getContraseña().equals(contrasena)){
+            return this.getPasswords().get(id);
+        } else {
+            return null;
+        }
+          
+    }
+    
+    
 
     public void mostrarApertura() {
     	for (int i = 0; i < this.getAperturaProgramada().size(); i++) {
@@ -87,12 +135,12 @@ public class Inventario {
     
 
     
-    public ArrayList<Producto> getUsuario() {
+    public ArrayList<Usuario> getUsuario() {
 		return usuario;
 	}
 
 
-	public void setUsuario(ArrayList<Producto> usuario) {
+	public void setUsuario(ArrayList<Usuario> usuario) {
 		this.usuario = usuario;
 	}
 
@@ -193,69 +241,74 @@ public class Inventario {
     }
     
 
-    public Producto agregarProducto(int sku) {
+    public Producto agregarProducto(int sku, Usuario user) {
         
-    	
-    	if (this.tablaSku.get(sku) != null) {
+    	if (this.tablaSku.get(sku) != null && user.getPermisos().contains(1)) {
     		Producto producto_base = this.tablaSku.get(sku);
     		Producto producto_nuevo = new Producto(producto_base.getSabor(), producto_base.getPresentacion(),
     				producto_base.getMarca(), producto_base.getSku());
                 
     		producto_base.getCola().enqueue(producto_nuevo);
+                user.registrarAccion("Agregó " + producto_nuevo.toString());
                 return producto_nuevo;
 
     		
 
 
     	} else {
-    		System.out.println("Sku no existente");
                 return null;
     	}
 
     }
     
-    public void programarApertura(int sku) {
+    public Producto programarApertura(int sku, Usuario user) {
     	
-    	if(this.tablaSku.get(sku) != null) {
-    		this.aperturaProgramada.add(this.tablaSku.get(sku).getCola().dequeue());
-    		System.out.println("Producto programado para la apertura");
+    	if(this.tablaSku.get(sku) != null && user.getPermisos().contains(2)) {
+                Producto temp = this.tablaSku.get(sku).getCola().dequeue();
+    		this.aperturaProgramada.add(temp);
+                user.registrarAccion("Programó apertura");
+    		return temp;
     	}else {
-    		System.out.println("Sku no válido");
+    		return null;
     	}
     	
     }
     
-    public Producto venderProducto(int sku) {
+    public Producto venderProducto(int sku, Usuario user) {
     	
-    	if (this.tablaSku.get(sku) != null) {
+    	if (this.tablaSku.get(sku) != null && user.getPermisos().contains(2)) {
     		Producto temp = this.tablaSku.get(sku).getCola().dequeue();
     		temp.vender();
     		this.vendido.add(temp);
+                user.registrarAccion("Vendió " + temp.toString());
                 return temp;
     	}
     	else {
-    		System.out.println("Sku no válido");
+    		
                 return null;
     	}
     
     	}
     
-    public Producto abrirProducto(int sku) {
+    public Producto abrirProducto(int sku, Usuario user) {
     	
-    	if (this.tablaSku.get(sku) != null) {
+    	if (this.tablaSku.get(sku) != null && user.getPermisos().contains(2)) {
     		Producto temp = this.tablaSku.get(sku).getCola().dequeue();
     		temp.abrir();
     		this.abierto.add(temp);
+                user.registrarAccion("Abrió " + temp.toString());
                 return temp;
     	}
     	else {
-    		System.out.println("Sku no válido");
+    		
                 return null;
     	}
     	
     }
     
-    public ArrayList<Producto> realizarApertura() {
+    public ArrayList<Producto> realizarApertura(Usuario user) {
+        
+        if (user.getPermisos().contains(1)){
     	ArrayList<Producto> productos = new ArrayList<>();
     	Iterator<Producto> iterador = this.aperturaProgramada.iterator();
     	while(iterador.hasNext()) {
@@ -263,17 +316,20 @@ public class Inventario {
     		iterador.remove();
     		producto.abrir();
     		this.abierto.add(producto);
-                productos.add(producto);
-    		System.out.println("Producto a abrir: ");
-    		System.out.println(producto);
-    	}
+                productos.add(producto); 
+        }
+        user.registrarAccion("Realizó apertura");
         return productos;
+        } else {
+            return null;
+        }
     }
  // FUNCIONALIDAD 6
-    public void consultarProductosConPocaExistencia() {
-        System.out.println("Consultando productos con poca existencia...");
-
-        // Listas de colas de productos según el sabor y presentación
+    public Map<String,Integer> consultarProductosConPocaExistencia(Usuario user) {
+        
+        if(user.getPermisos().contains(3)){
+        Map<String, Integer> pocaExistencia = new HashMap<>();
+        // Listas de colas de productos seg ún el sabor y presentación
         Queue[] colasProductos = {chocolate_10, chocolate_5, fresa_10, fresa_5, vainilla_10, vainilla_5};
         String[] descripciones = {"Chocolate 10 litros", "Chocolate 5 litros", "Fresa 10 litros", "Fresa 5 litros", "Vainilla 10 litros", "Vainilla 5 litros"};
 
@@ -283,23 +339,12 @@ public class Inventario {
 
             // Verificar si tiene 2 o menos productos
             if (cola.size() <= 2) {
-                System.out.println("Pocas existencias para: " + descripciones[i] + " (" + cola.size() + " unidades restantes)");
-
-                // Recorremos la cola para mostrar los productos
-                NodoSimple nodo = cola.data.first();
-                while (nodo != null) {
-                    Producto producto = nodo.getData();
-                    
-                    // Mostrar la información relevante del producto
-                    System.out.println("Producto: " + producto.getSabor());
-                    System.out.println("Presentación: " + producto.getPresentacion() + " litros");
-                    System.out.println("SKU: " + producto.getSKU());
-                    System.out.println("Fecha de ingreso: " + producto.getFechaIngreso());
-                    System.out.println("------------------------------");
-                    
-                    nodo = nodo.getNext(); // Avanzar al siguiente producto en la cola
-                }
+                pocaExistencia.put(descripciones[i], cola.size());
             }
+        }
+        return pocaExistencia;
+    } else {
+            return null;
         }
     }
     
@@ -312,105 +357,154 @@ public class Inventario {
             return temp.getCola().size();
     }
     
-    public void mostrarSku() {
-        System.out.println("SKU Disponibles:");
-        System.out.println("101: Sabor Chocolate, CremHelado, 10 Litros");
-        System.out.println("102: Sabor Chocolate, CremHelado, 5 Litros");
-        System.out.println("103: Sabor Chocolate, Colombina, 10 Litros");
-        System.out.println("104: Sabor Chocolate, Colombina, 5 Litros");
-        System.out.println("105: Sabor Vainilla, CremHelado, 10 Litros");
-        System.out.println("106: Sabor Vainilla, CremHelado, 5 Litros");
-        System.out.println("107: Sabor Vainilla, Colombina, 10 Litros");
-        System.out.println("108: Sabor Vainilla, Colombina, 5 Litros");
-        System.out.println("109: Sabor Fresa, CremHelado, 10 Litros");
-        System.out.println("110: Sabor Fresa, CremHelado, 5 Litros");
-        System.out.println("111: Sabor Fresa, Colombina, 10 Litros");
-        System.out.println("112: Sabor Fresa, Colombina, 5 Litros");
+    public String mostrarSku() {
+        return "SKU Disponibles:" + "\n" +
+        "101: Sabor Chocolate, CremHelado, 10 Litros" + "\n" +
+        "102: Sabor Chocolate, CremHelado, 5 Litros" + "\n" +
+        "103: Sabor Chocolate, Colombina, 10 Litros" + "\n" +
+        "104: Sabor Chocolate, Colombina, 5 Litros" + "\n" +
+        "105: Sabor Vainilla, CremHelado, 10 Litros" + "\n" +
+        "106: Sabor Vainilla, CremHelado, 5 Litros" + "\n" +
+        "107: Sabor Vainilla, Colombina, 10 Litros" + "\n" +
+        "108: Sabor Vainilla, Colombina, 5 Litros" + "\n" +
+        "109: Sabor Fresa, CremHelado, 10 Litros" + "\n" +
+        "110: Sabor Fresa, CremHelado, 5 Litros" + "\n" +
+        "111: Sabor Fresa, Colombina, 10 Litros" + "\n" +
+        "112: Sabor Fresa, Colombina, 5 Litros" + "\n";
     }
     //ACA
     //Parte de la funcionalidad 9
-    public void registrarPedidoLlegado(int sku, int cantidad) {
-    pedidosLlegados.put(sku, cantidad);
+    public boolean registrarPedidoLlegado(int sku, int cantidad, Usuario user) {
+        
+        if(user.getPermisos().contains(1)){
+        pedidoLlegado.put(sku, cantidad);
 
-    // Ciclo para agregar 'cantidad' de productos al inventario
-    for (int i = 0; i < cantidad; i++) {
-        agregarProducto(sku); // Agrega el producto al inventario 'cantidad' veces
-    }
-    System.out.println("Pedido registrado: SKU " + sku + ", Cantidad llegada: " + cantidad);
+        // Ciclo para agregar 'cantidad' de productos al inventario
+        for (int i = 0; i < cantidad; i++) {
+        agregarProducto(sku, user); // Agrega el producto al inventario 'cantidad' veces
+        }
+        user.registrarAccion("Registró pedido");
+        return true;
+        } else {
+            return false;
+        }
+    
 }
 
     
-    public void registrarPedido(int sku, int cantidad) {
-        pedidosRealizados.put(sku, cantidad);
-        System.out.println("Pedido registrado: SKU " + sku + ", Pedida: " + cantidad);
+    public boolean registrarPedido(int sku, int cantidad, Usuario user) {
+        
+        if (user.getPermisos().contains(2)){
+             pedidoProgramado.put(sku, cantidad);
+             user.registrarAccion("Programó producto: Sku " + sku + "Cantidad " + cantidad);
+             return true;
+        } else {
+            return false;
+        }
+       
+        
     }
     
     //¿EL PEDIDO CUANDO SE HACE?
-    //EL PEDIDO EN ESTE CASO SOLO SE HACE CUANDO HAY POCAS EXISTENCIAS
-    public void PedidoProgramado() {
-	    	
+    //EL PEDIDO EN ESTE CASO SOLO SE HACE CUANDO NO HAY EXISTENCIAS
+    public boolean PedidoProgramado(Usuario user) {
+	 
+    if (user.getPermisos().contains(2)){
     if (this.getChocolate_10().isEmpty()) {
-	registrarPedido(1001, 10);
+	registrarPedido(101, 5, user);
+        registrarPedido(103, 5, user);
 	}
     
     if (this.getChocolate_5().isEmpty()) {
-	registrarPedido(1002, 10);
+	registrarPedido(102, 5, user);
+        registrarPedido(104, 5, user);
 	    	}
 	    	
     if(this.getVainilla_10().isEmpty()) {
-	registrarPedido(1003, 10);
+	registrarPedido(105, 5, user);
+        registrarPedido(107, 5, user);
 	    	}
 	    	
     if (this.getVainilla_5().isEmpty()) {
-	registrarPedido(1004, 10);
+	registrarPedido(106, 5, user);
+        registrarPedido(108, 5, user);
 	    	}
 	    	
     if (this.getFresa_10().isEmpty()) {
-	registrarPedido(1005, 10);
+	registrarPedido(109, 5, user);
+        registrarPedido(111,5, user);
 	    	}
     if (this.getFresa_5().isEmpty()) {
-	registrarPedido(1006, 10);
+	registrarPedido(110,5, user);
+        registrarPedido(112,5, user);
 	}
-     }
+    
+    return true;
+     } else {
+        return false;
+    }
+    }
     
     ///ESTO ES LO IMPORTANTE DE LA FUNCIONALIDAD 9 DEVUELVE NOMBRE SKU CANTIDAD PEDIDA Y CANTIDAD LLEGADA
-public boolean compararPedidoConLlegada() {
-    boolean todosCompletos = true; // Inicialmente, asumimos que todos los pedidos están completos
+    public Boolean compararPedidoConLlegada(Usuario user) {
+    if (user.getPermisos().contains(1)){
+        boolean iguales = pedidoProgramado.equals(this.pedidoLlegado);
     
-    for (Map.Entry<Integer, Integer> pedidoRealizado : pedidosRealizados.entrySet()) {
-        int sku = pedidoRealizado.getKey();
-        int cantidadPedida = pedidoRealizado.getValue();
-        int cantidadLlegada = pedidosLlegados.getOrDefault(sku, 0);
-        
-        String nombreProducto = obtenerNombreSKU(sku);
-        System.out.println("SKU: " + sku + " (" + nombreProducto + "), Cantidad pedida: " + cantidadPedida + ", Cantidad llegada: " + cantidadLlegada);
-        
-        if (cantidadPedida != cantidadLlegada) {
-            int cantidadFaltante = cantidadPedida - cantidadLlegada;
-            System.out.println("Cantidad faltante para SKU " + sku + ": " + cantidadFaltante);
-            todosCompletos = false; // Si hay diferencias, indicamos que no todos los pedidos están completos
-            registrarPedido(sku,10);
-        }
+    if (iguales){
+        this.pedidoLlegado.clear();
+        this.pedidoProgramado.clear();
+        return iguales;
+    } else {
+        return false;
     }
-    
-    // Vaciar los mapas después de la comparación
-    pedidosRealizados.clear();
-    pedidosLlegados.clear();
-
-    return todosCompletos; // Retorna true si todos los pedidos fueron completados, false si alguno no lo fue
-}
-
-
-    private String obtenerNombreSKU(int sku) {
-    switch (sku) {
-        case 1001: return "Chocolate 10";
-        case 1002: return "Chocolate 5";
-        case 1003: return "Vainilla 10";
-        case 1004: return "Vainilla 5";
-        case 1005: return "Fresa 10";
-        case 1006: return "Fresa 5";
-        default: return "Desconocido";
+    } else {
+        return null;
     }
 }
 
+public Map diferenciaPedido(Boolean v){
+    
+    if (v){
+        Map<String,String> dif = new HashMap<>();
+        dif.put("No hay","diferencia");
+        return dif;
+    }else if(v == false){
+        Map<Integer,Integer> diferencia = new HashMap<>();
+        for (Map.Entry<Integer, Integer> entry : pedidoProgramado.entrySet()) {
+            Integer sku = entry.getKey();
+            int cantidadPedida = entry.getValue();
+            int cantidadRecibida = pedidoLlegado.getOrDefault(sku, 0); 
+
+            if (cantidadPedida != cantidadRecibida) {
+                diferencia.put(sku, cantidadPedida - cantidadRecibida); 
+                pedidoProgramado.put(sku,cantidadPedida-cantidadRecibida);
+            }
+        } 
+           
+        this.pedidoProgramado = diferencia;
+        return diferencia;
+        } 
+        
+        return null;
+    }
+
+    public Map<Integer, Integer> getPedidoProgramado() {
+        return pedidoProgramado;
+    }
+
+    public Map<Integer, Producto> getTablaSku() {
+        return tablaSku;
+    }
+
+    public Map<Integer, Integer> getPedidoLlegado() {
+        return pedidoLlegado;
+    }
+    
+    
+    
+    
+   
+    
 }
+
+

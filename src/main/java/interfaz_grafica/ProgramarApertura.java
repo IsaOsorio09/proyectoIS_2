@@ -3,18 +3,35 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package interfaz_grafica;
-
+import helados_pa_todos.Inventario;
+import helados_pa_todos.Usuario;
+import helados_pa_todos.ListaSimple;
+import helados_pa_todos.NodoSimple;
+import helados_pa_todos.Pedido;
+import helados_pa_todos.Producto;
+import helados_pa_todos.Queue;
+import helados_pa_todos.RegistroModificaciones;
+import helados_pa_todos.Usuario;
+import javax.swing.JOptionPane;
 /**
  *
  * @author isaop
  */
 public class ProgramarApertura extends javax.swing.JFrame {
-
+    public Inventario inv;
+    public Usuario user;
+    public Menu v1;
     /**
      * Creates new form ProgramarApertura
      */
-    public ProgramarApertura() {
+    public ProgramarApertura(Inventario inv, Usuario user) {
+        this.inv = inv;
+        this.user = user;
         initComponents();
+    }
+    
+    public void setv1(Menu v1){
+        this.v1 = v1;
     }
 
     /**
@@ -30,13 +47,14 @@ public class ProgramarApertura extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnVolverMenu5 = new javax.swing.JButton();
         txtProgramarApertura = new javax.swing.JLabel();
-        btnSKU6 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         txtProgramRealizada = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        txtProgramApertura = new javax.swing.JTextArea();
+        txtProd = new javax.swing.JTextArea();
+        txtSku = new javax.swing.JTextField();
+        btnAyuda = new javax.swing.JButton();
+        btnProgramar = new javax.swing.JButton();
 
         btnSKU5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "101 chocolate, 10 Litros, CremHelado", "102 chocolate, 5 Litros, CremHelado", "103 chocolate, 10 Litros, Colombina", "104 chocolate, 5 Litros, Colombina", "105 fresa, 10 Litros, CremHelado", "106 fresa, 5 Litrs, CremHelado", "107 fresa, 10 Litros, Colombina", "108 fresa, 5 Litros, Colombina", "109 vainilla, 10 Litros, CremHelado", "110 vainilla, 5 Litros, CremHelado", "111 vainilla, 10 Litros, Colombina", "112 vainilla, 5 Litros, Colombina" }));
         btnSKU5.addActionListener(new java.awt.event.ActionListener() {
@@ -57,22 +75,28 @@ public class ProgramarApertura extends javax.swing.JFrame {
         txtProgramarApertura.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtProgramarApertura.setText("Programar Apertura de Producto");
 
-        btnSKU6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "101 chocolate, 10 Litros, CremHelado", "102 chocolate, 5 Litros, CremHelado", "103 chocolate, 10 Litros, Colombina", "104 chocolate, 5 Litros, Colombina", "105 fresa, 10 Litros, CremHelado", "106 fresa, 5 Litrs, CremHelado", "107 fresa, 10 Litros, Colombina", "108 fresa, 5 Litros, Colombina", "109 vainilla, 10 Litros, CremHelado", "110 vainilla, 5 Litros, CremHelado", "111 vainilla, 10 Litros, Colombina", "112 vainilla, 5 Litros, Colombina" }));
-        btnSKU6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSKU6ActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("Selecciona el producto del cual deseas programar");
-
-        jLabel2.setText("la apertura:");
+        jLabel1.setText("Selecciona el producto del cual deseas programar para apertura");
 
         txtProgramRealizada.setText("Has realizado la programación de la apertura de:");
 
-        txtProgramApertura.setColumns(20);
-        txtProgramApertura.setRows(5);
-        jScrollPane1.setViewportView(txtProgramApertura);
+        txtProd.setColumns(20);
+        txtProd.setRows(5);
+        txtProd.setText("\n");
+        jScrollPane1.setViewportView(txtProd);
+
+        btnAyuda.setText("Ayuda Sku");
+        btnAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAyudaActionPerformed(evt);
+            }
+        });
+
+        btnProgramar.setText("Programar");
+        btnProgramar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProgramarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -81,9 +105,6 @@ public class ProgramarApertura extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(295, 295, 295)
-                        .addComponent(btnVolverMenu5))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 787, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -91,23 +112,26 @@ public class ProgramarApertura extends javax.swing.JFrame {
                         .addComponent(txtProgramarApertura)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(54, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnVolverMenu5)
+                            .addComponent(txtProgramRealizada))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(95, 95, 95))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(248, 248, 248)))
-                        .addComponent(btnSKU6, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(132, 132, 132))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(225, 225, 225)
+                                .addComponent(btnAyuda))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(141, 141, 141)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtProgramRealizada)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47))))
+                        .addComponent(jLabel1)
+                        .addGap(129, 129, 129)
+                        .addComponent(txtSku, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addComponent(btnProgramar)))
+                .addGap(69, 69, 69))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -116,23 +140,23 @@ public class ProgramarApertura extends javax.swing.JFrame {
                 .addComponent(txtProgramarApertura)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSKU6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)))
+                .addGap(17, 17, 17)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtSku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnProgramar))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
+                        .addGap(135, 135, 135)
                         .addComponent(txtProgramRealizada)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnVolverMenu5)
+                            .addComponent(btnAyuda)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48)))
-                .addComponent(btnVolverMenu5))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -149,70 +173,54 @@ public class ProgramarApertura extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverMenu5ActionPerformed
-        // TODO add your handling code here:
+        this.v1.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_btnVolverMenu5ActionPerformed
 
     private void btnSKU5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSKU5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSKU5ActionPerformed
 
-    private void btnSKU6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSKU6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSKU6ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void btnProgramarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProgramarActionPerformed
+       String sku = txtSku.getText();
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+            int sku_ = Integer.parseInt(sku);
+            Producto prod = inv.programarApertura(sku_, user);
+            if (prod != null){
+                txtProd.setText(prod.toString());
+            } else {
+                JOptionPane.showMessageDialog(null, "Sku inválido o usuario sin permisos.", "Información", JOptionPane.INFORMATION_MESSAGE);
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ProgramarApertura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ProgramarApertura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ProgramarApertura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ProgramarApertura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingresa un SKU válido.", "Error de entrada", JOptionPane.ERROR_MESSAGE);
         }
-        //</editor-fold>
+    }//GEN-LAST:event_btnProgramarActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ProgramarApertura().setVisible(true);
-            }
-        });
-    }
+    private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
+        JOptionPane.showMessageDialog(null, inv.mostrarSku(), "Información", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnAyudaActionPerformed
+
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAyuda;
+    private javax.swing.JButton btnProgramar;
     private javax.swing.JComboBox<String> btnSKU5;
-    private javax.swing.JComboBox<String> btnSKU6;
     private javax.swing.JButton btnVolverMenu5;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea txtProgramApertura;
+    private javax.swing.JTextArea txtProd;
     private javax.swing.JLabel txtProgramRealizada;
     private javax.swing.JLabel txtProgramarApertura;
+    private javax.swing.JTextField txtSku;
     // End of variables declaration//GEN-END:variables
 }

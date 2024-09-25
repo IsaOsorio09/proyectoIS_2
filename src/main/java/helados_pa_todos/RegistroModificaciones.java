@@ -28,6 +28,6 @@ public class RegistroModificaciones {
 
     @Override
     public String toString() {
-        return "Usuario: " + usuario + ", Acción: " + accion + ", Fecha y hora: " + timestamp;
+        return "Usuario: " + usuario + ", Acción: " + accion + ", Fecha y hora: " + timestamp + "\n";
     }
 }

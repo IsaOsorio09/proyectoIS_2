@@ -3,18 +3,36 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package interfaz_grafica;
-
+import helados_pa_todos.Inventario;
+import helados_pa_todos.Usuario;
+import helados_pa_todos.ListaSimple;
+import helados_pa_todos.NodoSimple;
+import helados_pa_todos.Pedido;
+import helados_pa_todos.Producto;
+import helados_pa_todos.Queue;
+import helados_pa_todos.RegistroModificaciones;
+import helados_pa_todos.Usuario;
+import javax.swing.JOptionPane;
 /**
  *
  * @author isaop
  */
 public class ResgistraAbiertos extends javax.swing.JFrame {
-
+    
+    public Inventario inv;
+    public Usuario user;
+    public Menu v1;
     /**
      * Creates new form ResgistrarAbiertos
      */
-    public ResgistraAbiertos() {
+    public ResgistraAbiertos(Inventario inv, Usuario user) {
+        this.inv = inv;
+        this.user = user;
         initComponents();
+    }
+    
+    public void setv1(Menu v1){
+        this.v1 = v1;
     }
 
     /**
@@ -30,64 +48,86 @@ public class ResgistraAbiertos extends javax.swing.JFrame {
         btnVolverMenu4 = new javax.swing.JButton();
         txtRegistroProducAbierto2 = new javax.swing.JLabel();
         txtSKUabierto2 = new javax.swing.JLabel();
-        btnSKU5 = new javax.swing.JComboBox<>();
         jSeparator3 = new javax.swing.JSeparator();
         txtProductoAbierto2 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        txtInfoAbierto2 = new javax.swing.JTextArea();
+        txtSku = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtProd = new javax.swing.JTextArea();
+        jButton1 = new javax.swing.JButton();
+        btnAbrir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnVolverMenu4.setText("Volver al Menú Principal");
+        btnVolverMenu4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverMenu4ActionPerformed(evt);
+            }
+        });
 
         txtRegistroProducAbierto2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtRegistroProducAbierto2.setText("Registrar Productos Abiertos");
 
-        txtSKUabierto2.setText("Selecciona el SKU del producto a abrir:");
-
-        btnSKU5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "101 chocolate, 10 Litros, CremHelado", "102 chocolate, 5 Litros, CremHelado", "103 chocolate, 10 Litros, Colombina", "104 chocolate, 5 Litros, Colombina", "105 fresa, 10 Litros, CremHelado", "106 fresa, 5 Litrs, CremHelado", "107 fresa, 10 Litros, Colombina", "108 fresa, 5 Litros, Colombina", "109 vainilla, 10 Litros, CremHelado", "110 vainilla, 5 Litros, CremHelado", "111 vainilla, 10 Litros, Colombina", "112 vainilla, 5 Litros, Colombina" }));
-        btnSKU5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSKU5ActionPerformed(evt);
-            }
-        });
+        txtSKUabierto2.setText("Ingresa el código SKU del producto a abrir");
 
         txtProductoAbierto2.setText("Producto abierto:");
 
-        txtInfoAbierto2.setEditable(false);
-        txtInfoAbierto2.setColumns(20);
-        txtInfoAbierto2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtInfoAbierto2.setRows(5);
-        jScrollPane3.setViewportView(txtInfoAbierto2);
+        txtSku.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSkuActionPerformed(evt);
+            }
+        });
+
+        txtProd.setColumns(20);
+        txtProd.setRows(5);
+        jScrollPane1.setViewportView(txtProd);
+
+        jButton1.setText("Ayuda");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        btnAbrir.setText("Abrir");
+        btnAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(txtSKUabierto2)
-                .addGap(95, 95, 95)
-                .addComponent(btnSKU5, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(173, 173, 173))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(325, 325, 325)
-                        .addComponent(btnVolverMenu4))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(323, 323, 323)
                         .addComponent(txtRegistroProducAbierto2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 742, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(234, 234, 234)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnVolverMenu4)
+                                .addGap(177, 177, 177)
+                                .addComponent(jButton1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtProductoAbierto2)
+                                .addGap(163, 163, 163)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGap(165, 165, 165)
+                            .addComponent(txtSKUabierto2)
+                            .addGap(147, 147, 147)
+                            .addComponent(txtSku, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAbrir))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                            .addGap(77, 77, 77)
+                            .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 742, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(85, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(234, 234, 234)
-                .addComponent(txtProductoAbierto2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(130, 130, 130))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -98,19 +138,22 @@ public class ResgistraAbiertos extends javax.swing.JFrame {
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSKU5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSKUabierto2))
+                    .addComponent(txtSKUabierto2)
+                    .addComponent(txtSku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAbrir))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(78, 78, 78))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(95, 95, 95)
                         .addComponent(txtProductoAbierto2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)))
-                .addComponent(btnVolverMenu4)
-                .addGap(19, 19, 19))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnVolverMenu4)
+                            .addComponent(jButton1))
+                        .addGap(21, 21, 21))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -127,79 +170,53 @@ public class ResgistraAbiertos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(16, 16, 16)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSKU5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSKU5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSKU5ActionPerformed
+    private void btnVolverMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverMenu4ActionPerformed
+        this.v1.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnVolverMenu4ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    private void txtSkuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSkuActionPerformed
+        
+    }//GEN-LAST:event_txtSkuActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+         JOptionPane.showMessageDialog(null, inv.mostrarSku(), "Información", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
+        String sku = txtSku.getText();
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+            int sku_ = Integer.parseInt(sku);
+            Producto prod = inv.abrirProducto(sku_, user);
+            if (prod != null){
+                txtProd.setText(prod.toString());
+            } else {
+                JOptionPane.showMessageDialog(null, "Sku inválido o usuario sin permisos.", "Información", JOptionPane.INFORMATION_MESSAGE);
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ResgistraAbiertos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ResgistraAbiertos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ResgistraAbiertos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ResgistraAbiertos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingresa un SKU válido.", "Error de entrada", JOptionPane.ERROR_MESSAGE);
         }
-        //</editor-fold>
-        //</editor-fold>
+    }//GEN-LAST:event_btnAbrirActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ResgistraAbiertos().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> btnSKU3;
-    private javax.swing.JComboBox<String> btnSKU4;
-    private javax.swing.JComboBox<String> btnSKU5;
-    private javax.swing.JButton btnVolverMenu3;
+    private javax.swing.JButton btnAbrir;
     private javax.swing.JButton btnVolverMenu4;
-    private javax.swing.JButton btnVolverMenu5;
+    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextArea txtInfoAbierto;
-    private javax.swing.JTextArea txtInfoAbierto1;
-    private javax.swing.JTextArea txtInfoAbierto2;
-    private javax.swing.JLabel txtProductoAbierto;
-    private javax.swing.JLabel txtProductoAbierto1;
+    private javax.swing.JTextArea txtProd;
     private javax.swing.JLabel txtProductoAbierto2;
-    private javax.swing.JLabel txtRegistroProducAbierto;
-    private javax.swing.JLabel txtRegistroProducAbierto1;
     private javax.swing.JLabel txtRegistroProducAbierto2;
-    private javax.swing.JLabel txtSKUabierto;
-    private javax.swing.JLabel txtSKUabierto1;
     private javax.swing.JLabel txtSKUabierto2;
+    private javax.swing.JTextField txtSku;
     // End of variables declaration//GEN-END:variables
 }

@@ -3,18 +3,37 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package interfaz_grafica;
-
+import helados_pa_todos.Inventario;
+import helados_pa_todos.Usuario;
+import helados_pa_todos.ListaSimple;
+import helados_pa_todos.NodoSimple;
+import helados_pa_todos.Pedido;
+import helados_pa_todos.Producto;
+import helados_pa_todos.Queue;
+import helados_pa_todos.RegistroModificaciones;
+import helados_pa_todos.Usuario;
+import javax.swing.JOptionPane;
 /**
  *
  * @author isaop
  */
 public class ResgistraVendidos extends javax.swing.JFrame {
-
+    
+    
+    public Inventario inv;
+    public Usuario user;
+    public Menu v1;
     /**
      * Creates new form ResgistrarVendidos
      */
-    public ResgistraVendidos() {
+    public ResgistraVendidos(Inventario inv, Usuario user) {
+        this.inv = inv;
+        this.user = user;
         initComponents();
+    }
+    
+    public void setv1(Menu v1){
+        this.v1 = v1;
     }
 
     /**
@@ -30,63 +49,84 @@ public class ResgistraVendidos extends javax.swing.JFrame {
         btnVolverMenu3 = new javax.swing.JButton();
         txtRegistroProducVendidos = new javax.swing.JLabel();
         txtSKUvendido = new javax.swing.JLabel();
-        btnSKU3 = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         txtProductoAbierto = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtInfoVendido = new javax.swing.JTextArea();
+        txtSku = new javax.swing.JTextField();
+        btnVender = new javax.swing.JButton();
+        btnAyuda = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtProducto = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         btnVolverMenu3.setText("Volver al Menú Principal");
+        btnVolverMenu3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverMenu3ActionPerformed(evt);
+            }
+        });
 
         txtRegistroProducVendidos.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtRegistroProducVendidos.setText("Registrar Productos Vendidos");
 
-        txtSKUvendido.setText("Selecciona el SKU del producto a vender:");
-
-        btnSKU3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecciona", "101 chocolate, 10 Litros, CremHelado", "102 chocolate, 5 Litros, CremHelado", "103 chocolate, 10 Litros, Colombina", "104 chocolate, 5 Litros, Colombina", "105 fresa, 10 Litros, CremHelado", "106 fresa, 5 Litrs, CremHelado", "107 fresa, 10 Litros, Colombina", "108 fresa, 5 Litros, Colombina", "109 vainilla, 10 Litros, CremHelado", "110 vainilla, 5 Litros, CremHelado", "111 vainilla, 10 Litros, Colombina", "112 vainilla, 5 Litros, Colombina" }));
-        btnSKU3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSKU3ActionPerformed(evt);
-            }
-        });
+        txtSKUvendido.setText("Ingresa el código SKU del producto a vender");
 
         txtProductoAbierto.setText("Producto Vendido:");
 
-        txtInfoVendido.setEditable(false);
-        txtInfoVendido.setColumns(20);
-        txtInfoVendido.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        txtInfoVendido.setRows(5);
-        jScrollPane1.setViewportView(txtInfoVendido);
+        btnVender.setText("Vender");
+        btnVender.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVenderActionPerformed(evt);
+            }
+        });
+
+        btnAyuda.setText("Ayuda sku");
+        btnAyuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAyudaActionPerformed(evt);
+            }
+        });
+
+        txtProducto.setColumns(20);
+        txtProducto.setRows(5);
+        jScrollPane2.setViewportView(txtProducto);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(txtSKUvendido)
-                .addGap(95, 95, 95)
-                .addComponent(btnSKU3, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(173, 173, 173))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(325, 325, 325)
-                        .addComponent(btnVolverMenu3))
+                        .addGap(234, 234, 234)
+                        .addComponent(txtProductoAbierto)
+                        .addGap(127, 127, 127))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnVolverMenu3)
+                            .addComponent(txtSKUvendido))
+                        .addGap(91, 91, 91)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(txtSku, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(60, 60, 60)
+                            .addComponent(btnVender))
+                        .addComponent(jScrollPane2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(67, 67, 67)
+                        .addComponent(btnAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(323, 323, 323)
                         .addComponent(txtRegistroProducVendidos))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(234, 234, 234)
-                        .addComponent(txtProductoAbierto)
-                        .addGap(127, 127, 127)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(77, 77, 77)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 742, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(85, Short.MAX_VALUE))
+                .addGap(85, 85, 85))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -97,18 +137,21 @@ public class ResgistraVendidos extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSKU3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSKUvendido))
+                    .addComponent(txtSKUvendido)
+                    .addComponent(txtSku, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnVender))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(95, 95, 95)
                         .addComponent(txtProductoAbierto)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)))
-                .addComponent(btnVolverMenu3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(25, 25, 25)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnVolverMenu3)
+                    .addComponent(btnAyuda))
                 .addGap(19, 19, 19))
         );
 
@@ -126,61 +169,52 @@ public class ResgistraVendidos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSKU3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSKU3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSKU3ActionPerformed
+    private void btnVenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderActionPerformed
+        String sku = txtSku.getText();
+        try {
+            int sku_ = Integer.parseInt(sku);
+            Producto prod = inv.venderProducto(sku_, user);
+            if (prod != null){
+                txtProducto.setText(prod.toString());
+            } else {
+                JOptionPane.showMessageDialog(null, "Sku inválido o usuario sin permisos.", "Información", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingresa un SKU válido.", "Error de entrada", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnVenderActionPerformed
+
+    private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
+        JOptionPane.showMessageDialog(null, inv.mostrarSku(), "Información", JOptionPane.INFORMATION_MESSAGE);
+    }//GEN-LAST:event_btnAyudaActionPerformed
+
+    private void btnVolverMenu3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverMenu3ActionPerformed
+        this.v1.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnVolverMenu3ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ResgistraVendidos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ResgistraVendidos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ResgistraVendidos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ResgistraVendidos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ResgistraVendidos().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> btnSKU3;
+    private javax.swing.JButton btnAyuda;
+    private javax.swing.JButton btnVender;
     private javax.swing.JButton btnVolverMenu3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextArea txtInfoVendido;
+    private javax.swing.JTextArea txtProducto;
     private javax.swing.JLabel txtProductoAbierto;
     private javax.swing.JLabel txtRegistroProducVendidos;
     private javax.swing.JLabel txtSKUvendido;
+    private javax.swing.JTextField txtSku;
     // End of variables declaration//GEN-END:variables
 }
