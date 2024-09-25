@@ -156,7 +156,7 @@ public class ModificarUsuario extends javax.swing.JFrame {
             } else {
                 Usuario temp = inv.getPasswords().get(id);
                 inv.getPasswords().remove(id);
-                JOptionPane.showMessageDialog(null, temp.toString(), "Error de entrada", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, temp.toString(), "Usuario eliminado", JOptionPane.ERROR_MESSAGE);
             }
         } else {
             JOptionPane.showMessageDialog(null, "Porfavor ingrese un id existente", "Error de entrada", JOptionPane.ERROR_MESSAGE);
