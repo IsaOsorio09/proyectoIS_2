@@ -89,4 +89,11 @@ public class Usuario {
         RegistroModificaciones registro = new RegistroModificaciones(this.nombre, accion);
         this.registros.add(registro);
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "nombre=" + nombre + ", tipo=" + tipo + ", contrase\u00f1a=" + contraseña + ", documento=" + documento + ", permisos=" + permisos + ", registros=" + registros + '}';
+    }
+    
+    
 }
