@@ -151,7 +151,7 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnProgramProducProximo">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Programar pedido para pr&#xf3;ximo pedido"/>
+            <Property name="text" type="java.lang.String" value="Programar producto para pr&#xf3;ximo pedido"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProgramProducProximoActionPerformed"/>

@@ -315,7 +315,7 @@ public class CompararProducto extends javax.swing.JFrame {
 
     private void btnCompararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompararActionPerformed
         if (inv.compararPedidoConLlegada(this.user)){
-            JOptionPane.showMessageDialog(null, "El pedido llegado es igual al realizado", "Información", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Todo el pedido fue completado con exito", "Información", JOptionPane.INFORMATION_MESSAGE);
         } else {
             StringBuilder sb = new StringBuilder();
             Map<Integer,Integer> mapa = inv.diferenciaPedido(inv.compararPedidoConLlegada(this.user));

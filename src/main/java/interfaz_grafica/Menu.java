@@ -77,7 +77,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btnProgramProducProximo.setText("Programar pedido para próximo pedido");
+        btnProgramProducProximo.setText("Programar producto para próximo pedido");
         btnProgramProducProximo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProgramProducProximoActionPerformed(evt);

@@ -160,8 +160,12 @@ public class ConsultarDisponibilidad extends javax.swing.JFrame {
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
         String sku = txtSku.getText();
         int sku_ = Integer.parseInt(sku);
+        if (inv.getTablaSku().containsKey(sku_)){
         int cantidad = inv.mostrarDisponible(sku_);
         txtCant.setText(Integer.toString(cantidad));
+        } else {
+             JOptionPane.showMessageDialog(null, "Ingrese un sku válido", "Información", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
